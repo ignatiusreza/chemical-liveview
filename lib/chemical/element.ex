@@ -35,6 +35,21 @@ defmodule Chemical.Element do
     |> Enum.at(element.type)
   end
 
+  def tick(element) do
+    {x, dx} = update(element.x, element.dx)
+    {y, dy} = update(element.y, element.dy)
+
+    element |> changeset(%{x: x, dx: dx, y: y, dy: dy})
+  end
+
+  def update(a, da) do
+    (fn
+       a when a < 0 -> {-a, -da}
+       a when a > 100 -> {100 - (a - 100), -da}
+       a -> {a, da}
+     end).(a + da)
+  end
+
   @doc false
   def changeset(element, attrs) do
     element

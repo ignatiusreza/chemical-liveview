@@ -19,6 +19,21 @@ defmodule ChemicalWeb.ChemicalLive do
      |> schedule_refresh()}
   end
 
+  @impl true
+  def handle_event(
+        "spawn",
+        %{"offsetWidth" => width, "offsetHeight" => height, "offsetX" => x, "offsetY" => y} =
+          _event,
+        socket
+      ) do
+    Element.spawn(x / width * 100, y / height * 100) |> Repo.insert!()
+
+    {:noreply,
+     socket
+     |> assign(chemicals: Element |> Repo.all())
+     |> schedule_refresh()}
+  end
+
   defp init_schedule_refresh(socket) do
     if connected?(socket) do
       schedule_refresh(socket)

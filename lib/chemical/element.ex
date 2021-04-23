@@ -22,6 +22,16 @@ defmodule Chemical.Element do
     }
   end
 
+  def spawn(x, y) do
+    %Chemical.Element{
+      type: :rand.uniform(4),
+      dx: (:rand.uniform(100) - 50) / 100,
+      dy: (:rand.uniform(100) - 50) / 100,
+      x: x,
+      y: y
+    }
+  end
+
   def display(element) do
     Code.eval_string("""
     [

@@ -1,0 +1,10 @@
+<div class="absolute inset-0">
+  <%= for chemical <- @chemicals do %>
+    <div
+      class="absolute text-4xl element"
+      style="left: <%= chemical.x %>%; top: <%= chemical.y %>%;"
+    >
+      <%= chemical |> Element.display |> to_string %>
+    </div>
+  <% end %>
+</div>

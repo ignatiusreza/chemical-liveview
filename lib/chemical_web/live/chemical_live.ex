@@ -43,7 +43,7 @@ defmodule ChemicalWeb.ChemicalLive do
   end
 
   defp schedule_refresh(socket) do
-    Process.send_after(self(), :refresh, 1)
+    Process.send_after(self(), :refresh, 16)
 
     socket
   end

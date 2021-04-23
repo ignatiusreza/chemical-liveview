@@ -14,9 +14,10 @@ defmodule Chemical.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Chemical.PubSub},
       # Start the Endpoint (http/https)
-      ChemicalWeb.Endpoint
+      ChemicalWeb.Endpoint,
       # Start a worker by calling: Chemical.Worker.start_link(arg)
       # {Chemical.Worker, arg}
+      Chemical.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
